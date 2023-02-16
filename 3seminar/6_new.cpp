@@ -37,7 +37,7 @@ int main()
 
 
     // Массив объектов типа string_view
-    string_view* view_arr = new string_view[3];
+        string_view* view_arr = new string_view[3];
 	for (int i = 0; i <= 2; i++) {
 		view_arr[i] = str_arr[i];
 	}
