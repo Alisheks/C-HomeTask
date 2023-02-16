@@ -4,29 +4,26 @@
 
 using namespace std;
 
-string repeat1(string_view s)
-{
+string repeat1(string_view s) {
     string s2{s};
     s2 += s2;
     return s2;
 }
 
-void repeat2(string& s)
-{
-	s.append(s);
-	return;
+void repeat2(string& s) {
+    s += s;
+    return;
 }
 
-void repeat3(string* ps)
-{
+void repeat3(string* ps) {
 	*ps += *ps;
 	return;
 }
 
-std::string* repeat4(string s)
-{
-	string* p = new string[1]{ s + s };
-	return p;
+string* repeat4(string_view s) {
+    string* s2 = new string[s.size()];
+    *s2  = string(s) + string(s);
+    return s2;
 }
 
 
