@@ -1,22 +1,23 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 
 using namespace std;
 
-void truncateToDot(std::string& s)
-{
-	int n;
-	n = s.find(".");
-
-	s.erase(n);
-
-	if ((int)s[0] == 34) {
-		s.push_back((char)34);
-	};
-
-	return;
+void truncateToDot(string& s) {
+    
+    string str = "";
+    
+    int i = 0;
+    
+    while (s[i] != 46) {
+        str += s[i];
+        i += 1;
+    }
+    
+    str.push_back((char)34);
+    
+    s = str;
 }
-
 
 int main()
 {
