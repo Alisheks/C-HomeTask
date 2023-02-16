@@ -1,12 +1,14 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <string_view>
 
 using namespace std;
 
-string repeat1(string s)
+string repeat1(string_view s)
 {
-	return s + s;
+    string s2{s};
+    s2 += s2;
+    return s2;
 }
 
 void repeat2(string& s)
