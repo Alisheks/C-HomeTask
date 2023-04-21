@@ -1,13 +1,59 @@
-﻿#include <iostream>
+#include <iostream>
 #include <vector>
-#include <string> 
+#include <span>
 #include <sstream>
+using std::cout, std::cin;
 
-using namespace std;
 
-vector<int> stringToVector(const string& input) {
-    vector<int> output;
-    stringstream ss(input);
+
+std::vector<int> lastDigits1(const std::vector<int>& v)
+{
+	int n = v.size();
+
+	std::vector<int> res(n);
+
+	for (int i = 0; i < n; ++i)
+		res[i] = v[i] % 10;
+
+
+	return res;
+}
+
+
+void lastDigits2(std::vector<int>& v)
+{
+	for (int i = 0; i < v.size(); ++i)
+	{
+		v[i] %= 10;
+		std::cout << v[i] << " ";
+	}
+
+	return;
+}
+
+
+void lastDigits3(std::vector<int>* pv)
+{
+	for (int i = 0; i < (*pv).size(); ++i)
+	{
+		(*pv)[i] %= 10;
+		std::cout << (*pv)[i] << " ";
+	}
+
+	return;
+}
+
+
+void lastDigits4(std::span<int> sp)
+{
+
+	return;
+}
+
+
+std::vector<int> stringToVector(const std::string& input) {
+    std::vector<int> output;
+    std::stringstream ss(input);
     int number;
     while (ss >> number) {
         output.push_back(number);
@@ -15,44 +61,23 @@ vector<int> stringToVector(const string& input) {
     return output;
 }
 
-vector<int> lastDigits1(const vector<int>& v) {
-    vector<int> result;
-    for (int i : v) {
-        result.push_back(i % 10);
-    }
-    return result;
-}
-
-void lastDigits2(vector<int>& v) {
-    for (int& i : v) {
-        i = i % 10;
-    }
-}
-
-void lastDigits3(vector<int>* pv) {
-    for (int& i : *pv) {
-        i = i % 10;
-    }
-}
-
-// void lastDigits4(span<int> sp) {
-//     for (int& i : sp) {
-//         i = i % 10;
-//     }
-// }
-
-int main() {
-
-    string input;
+int main()
+{
+    std::string input;
     cout << "Enter a list of numbers: ";
     getline(cin, input);
 
-    vector<int> output = stringToVector(input);
+    std::vector<int> u = stringToVector(input);
 
-    vector<int> result = lastDigits1(output);
-    for (const int& x : result) {
-        std::cout << x << " ";
-    }
-    cout << endl;
-    return 0;
+	std::vector<int> v1 = lastDigits1(u);
+	for (int i: v1)
+    	std::cout << i << ' ';
+    std::cout << "\n";
+
+    lastDigits2(u);
+    std::cout << "\n";
+
+	std::vector<int>* pu = &u;
+    lastDigits3(pu);
+    std::cout << "\n";
 }
