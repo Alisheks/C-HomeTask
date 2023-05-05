@@ -1,0 +1,21 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+void moveSpacesToEnd(std::string& str) {
+    std::replace_if(str.begin(), str.end(), isspace, ' '); // заменяем все пробелы на обычные пробелы (isspace проверяет пробелы)
+    std::string spaces(str.size(), ' '); // создаем строку из пробелов той же длины, что и входная строка
+    auto it = std::copy_if(str.begin(), str.end(), spaces.begin(), [](char c) {
+        return c != ' '; // копируем все символы, кроме пробелов, в начало новой строки
+    });
+    std::fill(it, spaces.end(), ' '); // заполняем конец новой строки пробелами
+    str = "\"" + spaces + "\""; // оборачиваем новую строку в кавычки и записываем ее в исходную строку
+}
+
+int main() {
+    std::string str;
+    std::getline(std::cin, str); // считываем строку с пробелами из консоли
+    moveSpacesToEnd(str); // передвигаем все пробелы в конец строки и заключаем её в кавычки
+    std::cout << str << std::endl; // выводим получившуюся строку на экран
+    return 0;
+}
