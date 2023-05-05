@@ -1,0 +1,35 @@
+#include <iostream>
+#include <list>
+
+int main() {
+    int n, m;
+    std::cout << "Enter the number of warriors and the step value: ";
+    std::cin >> n >> m;
+
+    std::list<int> v;
+    for (int i = 1; i <= n; i++) {
+        v.push_back(i);
+    }
+
+    auto it = v.begin();
+
+    while (v.size() > 1) {
+        for (int i = 1; i < m; i++) {
+            it++;
+            if (it == v.end()) {
+                it = v.begin();
+            }
+        }
+
+        std::cout << *it << ' ';
+        it = v.erase(it);
+
+        if (it == v.end()) {
+            it = v.begin();
+        }
+    }
+
+    std::cout << std::endl << "The last remaining warrior is " << *v.begin() << std::endl;
+
+    return 0;
+}
