@@ -1,0 +1,22 @@
+#include <iostream>
+#include <map>
+
+int main() {
+    std::map<int, int> counter;
+
+    int n;
+    std::cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        int num;
+        std::cin >> num;
+
+        counter[num]++;
+    }
+
+    for (const auto& [num, count] : counter) {
+        std::cout << num << " occurs " << count << " time(s)\n";
+    }
+
+    return 0;
+}
