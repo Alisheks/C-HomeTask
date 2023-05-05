@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+
+bool isUpper(const std::string& str) {
+    for (const char& c : str) {
+        if (std::islower(c)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main() {
+    std::string str;
+    std::cin >> str;
+    if (isUpper(str)) {
+        std::cout << "YES" << std::endl;
+    } else {
+        std::cout << "NO" << std::endl;
+    }
+    return 0;
+}
