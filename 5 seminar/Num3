@@ -1,0 +1,51 @@
+#include <iostream>
+#include <set>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int n, k;
+    cin >> n >> k;
+
+    // используем set, чтобы хранить места разрезов
+    set<int> cuts;
+
+    // multiset для хранения длин кусков
+    multiset<int> lengths;
+
+    // начинаем с одного куска длиной n
+    cuts.insert(0); // добавляем 0 и n как места разрезов
+    cuts.insert(n);
+
+    lengths.insert(n); // добавляем длину первого куска
+
+    // обрабатываем каждый разрез
+    for (int i = 0; i < k; i++) {
+        int cut;
+        cin >> cut;
+
+        // находим ближайшие места разрезов
+        auto it = cuts.upper_bound(cut);
+        int r = *it; // правое место разреза
+        it--;
+        int l = *it; // левое место разреза
+
+        // удаляем старый кусок длиной (r - l)
+        lengths.erase(lengths.find(r - l));
+
+        // добавляем два новых куска длиной (cut - l) и (r - cut)
+        cuts.insert(cut);
+        lengths.insert(cut - l);
+        lengths.insert(r - cut);
+
+        // выводим длину самого длинного куска
+        auto max_it = lengths.end();
+        max_it--;
+        cout << *max_it << " ";
+    }
+
+    cout << endl;
+
+    return 0;
+}
