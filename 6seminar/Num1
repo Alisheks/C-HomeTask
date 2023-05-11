@@ -2,32 +2,31 @@
 #include <vector>
 #include <algorithm>
 
+void sortParts(std::vector<int>& nums) {
+    // Находим первый максимум среди чисел
+    auto maxIt = std::max_element(nums.begin(), nums.end());
+
+    // Сортируем часть массива до первого максимума по возрастанию
+    std::sort(nums.begin(), maxIt);
+
+    // Сортируем часть массива после первого максимума по убыванию
+    std::sort(maxIt + 1, nums.end(), std::greater<int>());
+}
+
 int main() {
     int n;
     std::cin >> n;
-    std::vector<int> arr(n);
-    for (int i = 0; i < n; i++) {
-        std::cin >> arr[i];
+
+    std::vector<int> nums(n);
+    for (int i = 0; i < n; ++i) {
+        std::cin >> nums[i];
     }
 
-    int max_index = 0; // индекс первого максимума
-    for (int i = 1; i < n; i++) {
-        if (arr[i] > arr[max_index]) {
-            max_index = i;
-        }
+    sortParts(nums);
+
+    for (const auto& num : nums) {
+        std::cout << num << " ";
     }
-
-    // Сортируем часть массива, которая идёт до первого максимума по возрастанию
-    std::sort(arr.begin(), arr.begin() + max_index + 1);
-
-    // Сортируем часть массива, которая идёт после первого максимума по убыванию
-    std::sort(arr.begin() + max_index + 1, arr.end(), std::greater<int>());
-
-    // Выводим отсортированный массив
-    for (int i = 0; i < n; i++) {
-        std::cout << arr[i] << " ";
-    }
-    std::cout << std::endl;
 
     return 0;
 }
