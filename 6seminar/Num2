@@ -1,29 +1,25 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <string>
 
 void reverseVectorAndStrings(std::vector<std::string>& vec) {
-    // Обращаем вектор
+    // Обращаем порядок элементов вектора
     std::reverse(vec.begin(), vec.end());
-    // Обращаем каждую строку
-    for (std::string& s : vec) {
-        std::reverse(s.begin(), s.end());
-    }
+
+    // Обращаем каждую строку вектора
+    std::for_each(vec.begin(), vec.end(), [](std::string& str) {
+        std::reverse(str.begin(), str.end());
+    });
 }
 
 int main() {
     std::vector<std::string> vec = {"cat", "dog", "mouse", "elephant"};
-    std::cout << "Before reverse:\n";
-    for (const auto& s : vec) {
-        std::cout << s << "\n";
-    }
-    
+
     reverseVectorAndStrings(vec);
-    
-    std::cout << "\nAfter reverse:\n";
-    for (const auto& s : vec) {
-        std::cout << s << "\n";
+
+    for (const auto& str : vec) {
+        std::cout << str << std::endl;
     }
+
     return 0;
 }
