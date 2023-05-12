@@ -4,20 +4,21 @@
 
 void sortParts(std::vector<int>& nums) {
     // Находим первый максимум среди чисел
-    auto maxIt = std::max_element(nums.begin(), nums.end());
+    auto max = std::max_element(nums.begin(), nums.end());
 
-    // Сортируем часть массива до первого максимума по возрастанию
-    std::sort(nums.begin(), maxIt);
-
-    // Сортируем часть массива после первого максимума по убыванию
-    std::sort(maxIt + 1, nums.end(), std::greater<int>());
+    // Сортируем первую половину по возрастанию
+    std::sort(nums.begin(), max);
+    
+    // Сортируем вторую половину по убыванию
+    std::sort(max, nums.end());
+    std::reverse(max, nums.end());
 }
 
 int main() {
     int n;
     std::cin >> n;
-
     std::vector<int> nums(n);
+    
     for (int i = 0; i < n; ++i) {
         std::cin >> nums[i];
     }
