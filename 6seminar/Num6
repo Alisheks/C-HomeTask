@@ -4,6 +4,9 @@
 #include <list>
 #include <set>
 
+// Мы возвращаем максимальный элемент по значению, а не по ссылке, так как передача его по значению эффективнее (имеет небольшой размер).
+// Если бы элементы были сложными объектами с большим размером, то можно было бы использовать возвращение по ссылке (const T&), чтобы избежать лишнего копирования.
+
 template <typename Iterator>
 typename std::iterator_traits<Iterator>::value_type maxElement(Iterator first, Iterator last)
 {
