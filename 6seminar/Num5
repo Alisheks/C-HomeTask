@@ -4,11 +4,9 @@
 
 void moveSpacesToEnd(std::string& str) {
     // Перемещаем все пробелы в конец строки
-    std::stable_partition(str.begin(), str.end(), [](char c) {
-        return c != ' ';
-    });
+    std::stable_partition(str.begin(), str.end(), [](char c) {return c != ' ';});
 
-    // Добавляем кавычки к строке
+    // Добавляем кавычки к строке для удобства
     str.insert(str.begin(), '"');
     str.push_back('"');
 }
