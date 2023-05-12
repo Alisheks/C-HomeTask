@@ -1,0 +1,33 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <list>
+#include <set>
+
+template <typename Iterator>
+typename std::iterator_traits<Iterator>::value_type maxElement(Iterator first, Iterator last)
+{
+    // Используем алгоритм std::max_element для нахождения максимального элемента
+    auto maxIt = std::max_element(first, last);
+
+    // Возвращаем значение максимального элемента
+    return *maxIt;
+}
+
+int main()
+{
+    std::vector<int> vec = {5, 2, 10, 7, 3};
+    std::list<double> lst = {1.2, 3.4, 2.1, 4.5};
+    std::set<int> st = {9, 4, 6, 1, 8};
+
+    // Тестирование функции maxElement
+    int maxVec = maxElement(vec.begin(), vec.end());
+    double maxLst = maxElement(lst.begin(), lst.end());
+    int maxSet = maxElement(st.begin(), st.end());
+
+    std::cout << "Max element in vec: " << maxVec << std::endl;
+    std::cout << "Max element in lst: " << maxLst << std::endl;
+    std::cout << "Max element in st: " << maxSet << std::endl;
+
+    return 0;
+}
