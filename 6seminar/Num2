@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 
-void reverseVectorAndStrings(std::vector<std::string>& vec) {
+void rev(std::vector<std::string>& vec) {
     // Обращаем порядок элементов вектора
     std::reverse(vec.begin(), vec.end());
 
@@ -15,7 +15,7 @@ void reverseVectorAndStrings(std::vector<std::string>& vec) {
 int main() {
     std::vector<std::string> vec = {"cat", "dog", "mouse", "elephant"};
 
-    reverseVectorAndStrings(vec);
+    rev(vec);
 
     for (const auto& str : vec) {
         std::cout << str << std::endl;
