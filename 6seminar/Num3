@@ -1,23 +1,22 @@
-#include <iostream>
-#include <algorithm>
+﻿#include <iostream>
+#include <vector>
+#include <string>
+#include <string_view>
 #include <cctype>
 
-bool isUpperCase(const std::string& str) {
-    return std::all_of(str.begin(), str.end(), [](char c) {
-        return std::isupper(c);
-    });
+bool check_symb(std::string str) {
+    return std::all_of(str.begin(), str.end(), [](char symb) {return !(symb >= 97 && symb <= 122); });
 }
 
-int main() {
+int main()
+{
     std::string str;
-
     std::getline(std::cin, str);
-
-    if (isUpperCase(str)) {
+    
+    if (check_symb(str)) {
         std::cout << "YES" << std::endl;
-    } else {
-        std::cout << "NO" << std::endl;
     }
-
-    return 0;
+    else {
+        std::cout << "no" << std::endl;
+    }
 }
